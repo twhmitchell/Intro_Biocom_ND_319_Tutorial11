@@ -1,0 +1,45 @@
+
+# Set working directory: 
+
+os.chdir('/Users/winghomitchell/Intro_Biocom_ND_319_Tutorial11/Exercise11_files/Problem2')
+
+# Open file and create files to which data will be written: 
+
+file = open("motifsort.fasta", 'r')
+
+output_file_1 = open("motif1seqs", 'w')
+output_file_2 = open("motif2seqs", 'w')
+output_file_3 = open("otherseqs", 'w')
+
+# Store desired patterns as variables:
+
+motif_one = "AKKPRVZE"
+motif_two = "AAQWWRNYGG"
+
+for line in file:
+    line = line.strip()
+    
+    if line[0] == ">":
+        ID = line
+        
+    else:
+        if motif_one in line:
+            output_file_1.write(ID + "\n")
+            output_file_1.write(line + "\n")
+            
+        elif motif_two in line:
+            output_file_2.write(ID + "\n")
+            output_file_2.write(line + "\n")
+        
+        else:
+            output_file_3.write(ID + "\n")
+            output_file_3.write(line + "\n")
+
+print('Operation completed successfully.')
+
+file.close()
+output_file_1.close()
+output_file_2.close()
+output_file_3.close()
+
+# End of Exercise 11, Part 2. 
